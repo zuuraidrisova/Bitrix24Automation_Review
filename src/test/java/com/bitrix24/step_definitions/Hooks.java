@@ -24,6 +24,8 @@ public class Hooks {
         logger.info("URL: "+ConfigurationReader.getProperty("url"));
 
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+
+        Driver.getDriver().manage().window().maximize();
     }
 
     @After

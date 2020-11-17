@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
 
     public void login(){
 
-        String username = ConfigurationReader.getProperty("username");
+        String username = ConfigurationReader.getProperty("helpdesk_username");
         String password = ConfigurationReader.getProperty("password");
 
         emailInput.sendKeys(username);
@@ -29,5 +29,30 @@ public class LoginPage extends BasePage {
         logger.info("Login with "+username +" username and "+password+" password");
 
     }
+
+    /**
+     * this method takes parameter
+     * @param role as hr, marketing, helpdesk
+     * and logins according to credentials
+     */
+
+    public void login(String role){
+
+        role = role.toLowerCase();
+        // helpdesk_username :  helpdesk is coming from parameter,
+        // the rest _username we add so our ConfigurationReader
+        // utility method can recognize the value
+        String username = ConfigurationReader.getProperty(role+"_username");
+        String password = ConfigurationReader.getProperty("password");
+
+
+        emailInput.sendKeys(username);
+        passwordInput.sendKeys(password+ Keys.ENTER);
+
+        logger.info("Logins as : "+role);
+
+    }
+
+
 
 }
